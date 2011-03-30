@@ -1,6 +1,7 @@
 import sys
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class GeoNode(models.Model):
     name = models.CharField(max_length=100)
@@ -36,6 +37,7 @@ class GeoNode(models.Model):
             self.area_of_interest = data['area_of_interest']
             self.layer_count = int(data['layer_count'])
             self.map_count = int(data['map_count'])
+            self.last_update = datetime.utcnow()
             self.save()
             return self
         except:
